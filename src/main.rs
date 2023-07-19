@@ -1,19 +1,20 @@
-#[allow(unused)]
+use std::io;
+use rand::Rng;
 
-use clap::Parser;
-
-#[derive(Parser)]
-struct Cli {
-    pattern: String,
-    path: std::path::PathBuf,
-}
 fn main() {
-    let args = Cli::parse();
-    let content = std::fs::read_to_string(&args.path).expect("could not read file");
+    println!("Guess the number!");
 
-    for line in content.lines() {
-        if line.contains(&args.pattern) {
-            println!("{}", line);
-        }
-    }
+    let secret_number = rand::thread_rng().gen_range(1..=100);
+
+    println!("The secret number is {secret_number}");
+
+    println!("Please input your guess.");
+
+    let mut guess = String::new();
+
+    io::stdin()
+        .read_line(&mut guess)
+        .expect("faild to read line");
+
+    println!("you guessed {guess}");
 }
