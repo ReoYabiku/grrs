@@ -1,35 +1,9 @@
-use std::io;
-use std::cmp::Ordering;
-use rand::Rng;
+const CERTAIN_CONSTANT: i32 = 100;
 
 fn main() {
-    println!("Guess the number!");
+    let x = 5;
+    println!("x is {x}");
 
-    let secret_number = rand::thread_rng().gen_range(1..=100);
-
-    loop {
-        println!("Please input your guess.");
-
-        let mut guess = String::new();
-
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("faild to read line");
-
-        print!("you guessed: {guess}");
-
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),
-            Ordering::Greater => println!("Too big!"),
-            Ordering::Equal => {
-                println!("You win!");
-                break;
-            },
-        }
-    }
+    println!("the first usage of constant: {CERTAIN_CONSTANT}");
+    println!("the second usage of constant: {CERTAIN_CONSTANT}");
 }
