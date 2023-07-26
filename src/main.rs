@@ -1,13 +1,20 @@
 fn main() {
-    let mut counter = 0;
+    let word = String::from("hello world.");
 
-    let result = loop {
-        counter += 1;
+    let first = first_word(&word);
 
-        if counter == 10 {
-            break counter*2;
+    println!("the whole words are: {}", word);
+    println!("the first word is: {}", first);
+}
+
+fn first_word(s: &String) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
         }
-    };
+    }
 
-    println!("THe value of result: {result}");
+    &s[..]
 }
