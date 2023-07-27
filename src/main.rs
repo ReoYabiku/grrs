@@ -1,20 +1,12 @@
 fn main() {
-    let word = String::from("hello world.");
+    let rect1 = (30, 50);
 
-    let first = first_word(&word);
-
-    println!("the whole words are: {}", word);
-    println!("the first word is: {}", first);
+    println!(
+        "The area of the rectangle is {} square pixels.",
+        area(rect1)
+    );
 }
 
-fn first_word(s: &String) -> &str {
-    let bytes = s.as_bytes();
-
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return &s[0..i];
-        }
-    }
-
-    &s[..]
+fn area(dimensions: (u32, u32)) -> u32 {
+    return dimensions.0 * dimensions.1;
 }
