@@ -1,23 +1,19 @@
-struct Rectangle {
-    width: u32,
-    height: u32
-}
+use clap::Id;
 
-impl Rectangle {
-    fn area(&self) -> u32 {
-        self.width * self.height
-    }
-    
-    fn square(size: u32) -> Self {
-        Self {
-            width: size,
-            height: size
-        }
-    }
+enum IpAddKind {
+    V4(u8, u8, u8, u8),
+    V6(String)
 }
 
 fn main() {
-    let sq = Rectangle::square(10);
+    let home = IpAddKind::V4(127, 0, 0, 1);
+    let loopback = IpAddKind::V6(String::from("::1"));
 
-    println!("the area is {}", sq.area());
+    // why cant compile????
+    let type = match home {
+        V4 => "v4",
+        V6 => "v6",
+    };
+
+    println!("{}", type);
 }
