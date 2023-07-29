@@ -1,19 +1,21 @@
-use clap::Id;
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter
+}
 
-enum IpAddKind {
-    V4(u8, u8, u8, u8),
-    V6(String)
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
 }
 
 fn main() {
-    let home = IpAddKind::V4(127, 0, 0, 1);
-    let loopback = IpAddKind::V6(String::from("::1"));
+    let coin = Coin::Penny;
 
-    // why cant compile????
-    let type = match home {
-        V4 => "v4",
-        V6 => "v6",
-    };
-
-    println!("{}", type);
+    println!("value in cent is {}", value_in_cents(coin));
 }
