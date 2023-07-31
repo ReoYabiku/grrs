@@ -1,35 +1,25 @@
-#[derive(Debug)]
-enum UsState {
-    Alabama,
-    Alaska
-}
+mod back_of_house {
+    pub struct Breakfast {
+        pub toast: String,
+        seasonal_fuit: String,
+    }
 
-enum Coin {
-    Penny,
-    Nickel,
-    Dime,
-    Quarter(UsState)
-}
-
-fn value_in_cents(coin: Coin) -> u8 {
-    match coin {
-        Coin::Penny => {
-            println!("Lucky penny!");
-            1
-        },
-        Coin::Nickel => 5,
-        Coin::Dime => 10,
-        Coin::Quarter(state) => {
-            println!("State quarter from {:?}!", state);
-            25
-        },
+    impl Breakfast {
+        pub fn summer(toast: &str) -> Breakfast {
+            Breakfast {
+                toast: String::from(toast),
+                seasonal_fuit: String::from("peaches"),
+            }
+        }
     }
 }
 
-fn main() {
-    let coin = Coin::Penny;
-    let coin2 = Coin::Quarter(UsState::Alabama);
+pub fn eat_at_restaurant() {
+    let mut meal = back_of_house::Breakfast::summer("Rye");
+    meal.toast = String::from("Wheet");
+    println!("I'd like {} toast please!", meal.toast);
+}
 
-    println!("value in cent is {}", value_in_cents(coin));
-    println!("take a look at quater: {:?}", value_in_cents(coin2));
+fn main() {
+    eat_at_restaurant();
 }
